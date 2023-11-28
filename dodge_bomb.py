@@ -50,6 +50,11 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
+        """   
+        if kk_rct.collidedict(bb_rct):
+            print("Game Over")
+            return
+        """
             
         key_lst = pg.key.get_pressed()
         sum_mv = [0, 0]
@@ -64,7 +69,7 @@ def main():
             kk_rct.move_ip(-sum_mv[0], -sum_mv[1]) 
         screen.blit(kk_img, kk_rct)
         kk_rct.move_ip(vx, vy)
-        screen.blit(kk_img, [900, 400])
+        #screen.blit(kk_img, [900, 400])
         bb_rct.move_ip(vx, vy)
         yoko, tate = check_bound(bb_rct)
         if not yoko:
@@ -76,7 +81,7 @@ def main():
         screen.blit(bb_img, bb_rct)
         pg.display.update()
         tmr += 1
-        clock.tick(10)
+        clock.tick(100)
 
 
 if __name__ == "__main__":
