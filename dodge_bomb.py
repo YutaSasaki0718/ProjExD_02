@@ -44,7 +44,7 @@ def main():
     screen = pg.display.set_mode((WIDTH, HEIGHT))
     bg_img = pg.image.load("ex02/fig/pg_bg.jpg")
     kk_img = pg.image.load("ex02/fig/3.png")
-    kkk_img = pg.image.load("ex02/fig/8.png")
+    kkk_img = pg.image.load("ex02/fig/8.png") # kkk_imgでこうかとんがばくだんに触れたときに変更後の画像を置いている 
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
     kkk_img = pg.transform.rotozoom(kkk_img, 0, 2.0)
     kkk_rct = kkk_img.get_rect()
