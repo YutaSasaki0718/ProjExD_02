@@ -12,18 +12,7 @@ delta = {
     pg.K_LEFT: (-5, 0),
     pg.K_RIGHT: (+5, 0)
 }
-"""
-zisyo = {
-    (0, -5):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
-    (+5, -5):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
-    (+5, 0):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
-    (+5, +5):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
-    (0, +5):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
-    (-5, +5):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
-    (-5, 0):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
-    (-5, -5):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
-}
-"""
+
 
 def check_bound(rct: pg.Rect) -> tuple[bool, bool]:
     """
