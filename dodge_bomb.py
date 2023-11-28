@@ -1,6 +1,7 @@
 import random
 import sys
 import pygame as pg
+import time
 
 
 
@@ -64,7 +65,10 @@ def main():
         if kk_rct.colliderect(bb_rct):
             kk_img = kkk_img
             print("Game Over")
-             
+            screen.blit(kk_img, kk_rct)
+            pg.display.update()
+            time.sleep(3)
+            return
         
             
         key_lst = pg.key.get_pressed()
