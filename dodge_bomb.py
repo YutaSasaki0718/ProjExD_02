@@ -12,6 +12,18 @@ delta = {
     pg.K_LEFT: (-5, 0),
     pg.K_RIGHT: (+5, 0)
 }
+"""
+zisyo = {
+    (0, -5):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
+    (+5, -5):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
+    (+5, 0):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
+    (+5, +5):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
+    (0, +5):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
+    (-5, +5):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
+    (-5, 0):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
+    (-5, -5):kk_img = pg.transform.rotozoom(kk_img, 0, 0.2)
+}
+"""
 
 def check_bound(rct: pg.Rect) -> tuple[bool, bool]:
     """
@@ -32,10 +44,15 @@ def main():
     screen = pg.display.set_mode((WIDTH, HEIGHT))
     bg_img = pg.image.load("ex02/fig/pg_bg.jpg")
     kk_img = pg.image.load("ex02/fig/3.png")
+    kkk_img = pg.image.load("ex02/fig/8.png")
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
+    kkk_img = pg.transform.rotozoom(kkk_img, 0, 2.0)
+    kkk_rct = kkk_img.get_rect()
+    
     kk_rct = kk_img.get_rect()  # 練習3
     kk_rct.center = 900, 400
 
+    
 
     bb_img = pg.Surface((20, 20))  # 練習1
     bb_img.set_colorkey((0, 0, 0))  # 練習1
@@ -48,14 +65,17 @@ def main():
 
     clock = pg.time.Clock()
     tmr = 0
+
+
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
            
         if kk_rct.colliderect(bb_rct):
+            kk_img = kkk_img
             print("Game Over")
-            return
+             
         
             
         key_lst = pg.key.get_pressed()
@@ -65,13 +85,16 @@ def main():
                 sum_mv[0] += tpl[0]
                 sum_mv[1] += tpl[1]
 
+
         screen.blit(bg_img, [0, 0])
         kk_rct.move_ip(sum_mv[0], sum_mv[1]) 
+        
         if check_bound(kk_rct) != (True, True):
             kk_rct.move_ip(-sum_mv[0], -sum_mv[1]) 
+        #rotated_kk_img = pg.transform.rotozoom(kk_img, tmr % 360, 2.0)
         screen.blit(kk_img, kk_rct)
-        #kk_rct.move_ip(vx, vy)
-        #screen.blit(kk_img, [900, 400])
+    
+
         bb_rct.move_ip(vx, vy)
         yoko, tate = check_bound(bb_rct)
         if not yoko:
@@ -79,11 +102,13 @@ def main():
         if not tate:
             vy *= -1
         bb_rct.move_ip(vx, vy)
-        #screen.blit(kk_img, kk_rct)    
+            
         screen.blit(bb_img, bb_rct)
+
+    
         pg.display.update()
         tmr += 1
-        clock.tick(100)
+        clock.tick(20)
 
 
 if __name__ == "__main__":
